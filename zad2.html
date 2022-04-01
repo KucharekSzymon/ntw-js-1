@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zad2</title>
+</head>
+
+<body onload="find()">
+    <p style="color:red" class="asd">p1</p>
+    <p class="aa bb">p2</p>
+    <script>
+        //document.write("<input id='search' type='text'><button onclick='find()'>Open</button><br>")
+        function find() {
+            temp = ''
+            let toFind = prompt('Find element on page:').split(' ') //document.getElementById('search').value
+            let classes = document.getElementsByClassName(toFind[1])
+            let tags = document.getElementsByTagName(toFind[0])
+
+            console.log(tags)
+            console.log(classes)
+
+            if (tags.length > 0 && classes.length == 0) {
+                temp += 'Tags:\n'
+                for (let j = 0; j < tags.length; j++) {
+                    temp += tags[j].localName.toString() + '\n'
+                    temp += "\tcontent-> " + tags[j].textContent + '\n'
+                    if (tags[j].hasAttributes()) {
+                        let attrs = tags[j].attributes
+                        for (var i = attrs.length - 1; i >= 0; i--) {
+                            temp += '\t' + attrs[i].name + "->" + attrs[i].value + '\n'
+                        }
+                    }
+
+                }
+            }
+            if (classes.length > 0) {
+                temp += 'Classes:\n'
+                for (let j = 0; j < classes.length; j++) {
+                    temp += classes[j].localName.toString() + '\n'
+                    temp += "\tcontent-> " + classes[j].textContent + '\n'
+                    if (classes[j].hasAttributes()) {
+                        let attrs = classes[j].attributes
+                        for (var i = attrs.length - 1; i >= 0; i--) {
+                            temp += '\t' + attrs[i].name + "->" + attrs[i].value + '\n'
+                        }
+                    }
+
+                }
+            }
+
+            alert(temp)
+        } 
+    </script>
+
+</body>
+
+</html>

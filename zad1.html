@@ -1,0 +1,44 @@
+<script>
+    let exaples = [
+  'tool',
+   'bench',
+   'hour',
+   'find',    
+   'keyboard',
+   'assistance' ,
+   'car',
+   'loop',
+   'mouse',
+]
+
+function removeItemOnce(arr, value) {
+  var index = arr.indexOf(value);
+  if (index > -1) {
+    arr.splice(index, 1);
+  }
+  return arr;
+}
+let points = 0
+while(true){
+  let ran = Math.floor(Math.random() * exaples.length);
+
+  let letters = Object.assign([], exaples[ran])
+    
+  while(letters.length > 0){
+    console.log(letters)
+    let choosen = prompt(`${letters}\nPick a letter!\nYour score: ${points}`)
+    if(chppsen == 'quit') break
+    if(choosen)
+    if(letters.includes(choosen)){
+      points++
+      removeItemOnce(letters, choosen)
+    }
+    else
+      points--  
+  }
+  alert('You guessed a word!')
+}
+
+
+</script>
+<a href="index.html"><- go back</a>
