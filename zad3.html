@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zad 3</title>
+</head>
+
+<body>
+    <table>
+        <script>
+            let size = 4
+
+            let letter1 = []
+            let letter2 = []
+
+            for (let i = 0; i < size * size / 2; i++) letters.push(i);
+            for (let i = 0; i < size * size / 2; i++) letter2.push(i)
+
+            //letters = letters.sort((a, b) => 0.5 - Math.random())
+
+            function removeItemOnce(arr, value) {
+                var index = arr.indexOf(value);
+                if (index > -1) {
+                    arr.splice(index, 1);
+                }
+                return arr;
+            }
+            
+
+            for (let i = 0; i < size; i++) {
+                document.write('<tr>')
+                for (let j = 0; j < size; j++) {
+                    let tempRand = Math.floor(Math.random() * letters.length )
+                    document.write('<td><button>' + letters[tempRand] + '</button></td>')
+                    removeItemOnce(letters, tempRand)
+                    console.log(letters.length);
+                    
+                }
+                document.write('</tr>')
+            }
+        </script>
+    </table>
+</body>
+
+</html>
