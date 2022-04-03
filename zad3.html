@@ -1,48 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
-
+ 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zad 3</title>
 </head>
-
+ 
 <body>
+    <style>
+        button {
+            width: 50px;
+            height: 50px;
+            font-size: large;
+            color: black;
+            transition: .5s;
+        }
+    </style>
     <table>
         <script>
-            let size = 4
-
-            let letter1 = []
-            let letter2 = []
-
+            let firsClick, sndClick
+            let letters = []
+            let size = 2
+            let points = 0, moves = 0
+ 
+ 
             for (let i = 0; i < size * size / 2; i++) letters.push(i);
-            for (let i = 0; i < size * size / 2; i++) letter2.push(i)
-
-            //letters = letters.sort((a, b) => 0.5 - Math.random())
-
-            function removeItemOnce(arr, value) {
-                var index = arr.indexOf(value);
-                if (index > -1) {
-                    arr.splice(index, 1);
-                }
-                return arr;
-            }
-            
-
+            for (let i = 0; i < size * size / 2; i++) letters.push(i)
+ 
+            letters = letters.sort((a, b) => 0.5 - Math.random())
+ 
             for (let i = 0; i < size; i++) {
                 document.write('<tr>')
                 for (let j = 0; j < size; j++) {
-                    let tempRand = Math.floor(Math.random() * letters.length )
-                    document.write('<td><button>' + letters[tempRand] + '</button></td>')
-                    removeItemOnce(letters, tempRand)
-                    console.log(letters.length);
-                    
+                    let tempRand = Math.floor(Math.random() * letters.length)
+                    document.write('<td><button></button></td>')
                 }
                 document.write('</tr>')
             }
+            let buttons = document.querySelectorAll("button");
+ 
+            setTimeout(() => {
+                                for (let x = 0; x < buttons.length; x++) {
+                                    buttons[x].style.color = 'transparent'
+                                }
+                            }, 2000);
+ 
+            for (let i = 0; i < buttons.length; i++) {
+                buttons[i].textContent = letters[i]
+                buttons[i].onclick = () => {
+                    buttons[i].style.color = 'black'
+                    if (firsClick == undefined) {
+                        firsClick = letters[i]
+                        buttons[i].disabled = true
+                        buttons[i].style.color = 'black'
+                    }
+                    else {
+                        buttons[i].style.color = 'black'
+                        sndClick = letters[i]
+                        if (firsClick == sndClick) {
+                            for (let d = 0; d < buttons.length; d++) {
+                                if (buttons[d].textContent == sndClick){
+                                    buttons[d].style.display = 'none'
+                                    
+                                }
+                            }
+                            firsClick = undefined
+                            sndClick = undefined
+                            moves++
+                            points++
+                        }
+                        else {
+                            setTimeout(() => {
+                                for (let x = 0; x < buttons.length; x++) {
+                                    buttons[x].disabled = false
+                                    buttons[x].style.color = 'transparent'
+                                }
+                            }, 1000);
+ 
+                            moves++
+                            firsClick = undefined
+                            sndClick = undefined
+                        }
+ 
+                    }
+                    document.getElementById('moves').innerHTML = moves
+                    document.getElementById('points').innerHTML = points
+                    if(points == size * size / 2){
+                                        alert('You won!')
+                                        location.reload()
+                                    }
+                }
+            }
         </script>
     </table>
+    <div>
+        <p>Your points: <div id ='points'>0</div></p>
+        <p>Your moves: <div id ='moves'>0</div></p>
+    </div>
 </body>
-
+ 
 </html>
